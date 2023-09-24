@@ -30,7 +30,10 @@ int main(int argc, char** argv)
   // while ((ch=fgetc(menu_ptr) != EOF)) printf("%c", ch);
 
   consoleSelect(&bottomScreen);
-  Menu menu(9);
+  Menu menu("menu.txt");
+  menu.printMenuItems();
+  menu.printMenuState();
+
   u32 kDown;
 	u32 kHeld;
   
@@ -56,7 +59,7 @@ int main(int argc, char** argv)
     } 
     if(kDown & KEY_A)
     {
-      std::string str = "\x1b["+std::to_string(14)+";5HSelected"; 
+      std::string str = "\x1b["+std::to_string(14)+";20HSelected"; 
       std::cout << str << std::endl;
     }
   }
