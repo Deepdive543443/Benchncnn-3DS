@@ -22,12 +22,6 @@ int main(int argc, char** argv)
   // Print Opening message
   std::cout << "\x1b[26;16HHello, Menu demo!" << std::endl;
   std::cout << "\x1b[27;16HPress START to exit" << std::endl;
-  // FILE* menu_ptr = fopen("menu.txt", "r");
-
-  // if (menu_ptr == NULL) std::cout << "Cannot open file." << std::endl;
-
-  // char ch;
-  // while ((ch=fgetc(menu_ptr) != EOF)) printf("%c", ch);
 
   consoleSelect(&bottomScreen);
   Menu menu("menu.txt");
@@ -64,9 +58,6 @@ int main(int argc, char** argv)
     }
   }
 
-  // fclose(menu_ptr);
-  // Exit services
 	gfxExit();
-
 	return 0;
 }
