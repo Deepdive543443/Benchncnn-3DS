@@ -8,8 +8,8 @@
 
 class Menu
 {
-  int arrow;
-  int num_items;
+  int8_t arrow;
+  int8_t num_items;
   std::vector<std::string> menu_items;
   public:
     Menu(std::string menu_file);

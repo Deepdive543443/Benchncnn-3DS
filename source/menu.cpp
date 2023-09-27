@@ -27,7 +27,7 @@ Menu::Menu(std::string menu_file)
   file.close();
 
   arrow = -1;
-  num_items = (int) menu_items.size();
+  num_items = (int8_t) menu_items.size();
 }
 
 void Menu::MenuDOWN()
