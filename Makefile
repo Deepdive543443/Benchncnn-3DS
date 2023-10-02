@@ -56,7 +56,7 @@ NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
 # OCV_LIB_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/lib)
 # OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/include/opencv4/opencv2)
 
-ARCH += $(NCNN_LIB_FLAG) $(NCNN_INCLUDE_FLAG) -lncnn 
+ARCH += $(NCNN_LIB_FLAG) $(NCNN_INCLUDE_FLAG)
 # ----------------------------------------
 
 CFLAGS	:=	-g -Wall -O2 -mword-relocations \
@@ -70,7 +70,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lctru -lm
+LIBS	:= -lctru -lm -lncnn
 
 # # ----------------ncnn--------------------
 # NCNN_DIR := /d/cpp_libs/ncnn_aarch32

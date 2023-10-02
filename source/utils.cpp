@@ -1,7 +1,8 @@
 #include "net.h"
 #include "simpleocv.h"
 #include <iostream>
-#include <random>
+#include <time.h>
+// #include <random>
 #include "utils.h"
 
 
@@ -29,10 +30,16 @@ void pretty_print(const ncnn::Mat& m)
     printf("Matric shape [C, H, W]: [%d, %d, %d]\n", m.c, m.h, m.w);
 }
 
-ncnn::Mat randn_ncnn(int h, int w, int c)
+Randn::Randn()
 {
-    std::default_random_engine generator;
     std::normal_distribution<float> distribution(0.0, 1.0);
+    srand(time(0));
+}
+
+ncnn::Mat Randn::randn_ncnn(int h, int w, int c)
+{
+    // std::default_random_engine generator;
+    // std::normal_distribution<float> distribution(0.0, 1.0);
 
 
     cv::Mat images(h, w, c);

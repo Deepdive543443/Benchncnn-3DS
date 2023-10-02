@@ -35,6 +35,8 @@ int main(int argc, char** argv)
   menu.printMenuItems();
   menu.printMenuState();
 
+  Randn randn;
+
   u32 kDown;
 	u32 kHeld;
   
@@ -61,7 +63,8 @@ int main(int argc, char** argv)
     if(kDown & KEY_A)
     {
       consoleSelect(&topScreen);
-      ncnn::Mat mat = randn_ncnn(2, 2, 3);
+      ncnn::Mat mat = randn.randn_ncnn(2, 2, 3);
+      mat.reshape(3, 2, 2);
       // printf("Matric shape [C, H, W]: [%d, %d, %d]\n", mat.c, mat.h, mat.w);
       pretty_print(mat);
       consoleSelect(&bottomScreen);
