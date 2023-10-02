@@ -9,6 +9,7 @@ endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/3ds_rules
 
+
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
 # BUILD is the directory where object files & intermediate files will be placed
@@ -46,6 +47,18 @@ GFXBUILD	:=	$(BUILD)
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
 
+# ----------------ncnn--------------------
+NCNN_DIR := /d/cpp_libs/ncnn_aarch32
+NCNN_LIB_FLAG := $(foreach dir,$(NCNN_DIR),-L$(dir)/lib)
+NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
+
+# OCV_DIR := d/cpp_libs/opencv-mobile-4.8.0-armlinux/arm-linux-gnueabihf
+# OCV_LIB_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/lib)
+# OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/include/opencv4/opencv2)
+
+ARCH += $(NCNN_LIB_FLAG) $(NCNN_INCLUDE_FLAG) -lncnn 
+# ----------------------------------------
+
 CFLAGS	:=	-g -Wall -O2 -mword-relocations \
 			-ffunction-sections \
 			$(ARCH)
@@ -58,6 +71,19 @@ ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 LIBS	:= -lctru -lm
+
+# # ----------------ncnn--------------------
+# NCNN_DIR := /d/cpp_libs/ncnn_aarch32
+# NCNN_LIB_FLAG := $(foreach dir,$(NCNN_DIR),-L$(dir)/lib)
+# NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
+
+# # OCV_DIR := d/cpp_libs/opencv-mobile-4.8.0-armlinux/arm-linux-gnueabihf
+# # OCV_LIB_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/lib)
+# # OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/include/opencv4/opencv2)
+
+# CXXFLAGS += $(NCNN_LIB_FLAG) $(NCNN_INCLUDE_FLAG) -lncnn 
+# # ----------------------------------------
+
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -158,7 +184,7 @@ ifneq ($(ROMFS),)
 	export _3DSXFLAGS += --romfs=$(CURDIR)/$(ROMFS)
 endif
 
-.PHONY: all clean
+.PHONY: all clean debug
 
 #---------------------------------------------------------------------------------
 all: $(BUILD) $(GFXBUILD) $(DEPSDIR) $(ROMFS_T3XFILES) $(T3XHFILES)
@@ -176,6 +202,7 @@ ifneq ($(DEPSDIR),$(BUILD))
 $(DEPSDIR):
 	@mkdir -p $@
 endif
+
 
 #---------------------------------------------------------------------------------
 clean:
@@ -227,3 +254,23 @@ $(OUTPUT).elf	:	$(OFILES)
 #---------------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------------
+debug:
+	@echo Debugging
+	@echo $(CTRULIB)
+	@echo Target: $(TARGET)
+	@echo CXX: $(CXX)
+	@echo CPPFILES: $(CPPFILES)
+	@echo _3DSXDEPS: $(_3DSXDEPS)
+	@echo _3DSXFLAGS: $(_3DSXFLAGS)
+	@echo DEVKITARM: $(DEVKITARM)
+	@echo LDFLAGS: $(LDFLAGS)
+	@echo Inclued: $(DEVKITARM)/3ds_rules
+	@echo libraries: $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
+	@echo NCNN_INCLUDE_FLAG: $(NCNN_INCLUDE_FLAG)
+	@echo NCNN_LIB_FLAG: $(NCNN_LIB_FLAG)
+
+
+	@echo All command: $(SILENTCMD)$(CXX) -MMD -MP -MF $(DEPSDIR)/$*.d $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@ $(ERROR_FILTER)
+

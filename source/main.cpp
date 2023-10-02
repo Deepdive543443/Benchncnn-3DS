@@ -1,11 +1,18 @@
 #include "3ds.h"
-#include "menu.h"
+#include "net.h"
+
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
 
+
+
+#include "utils.h"
+#include "menu.h"
 
 int main(int argc, char** argv)
 {
+  srand(time(0));
   // Initialize services
   gfxInitDefault();
 
@@ -53,8 +60,11 @@ int main(int argc, char** argv)
     } 
     if(kDown & KEY_A)
     {
-      std::string str = "\x1b["+std::to_string(14)+";20HSelected"; 
-      std::cout << str << std::endl;
+      consoleSelect(&topScreen);
+      ncnn::Mat mat = randn_ncnn(2, 2, 3);
+      // printf("Matric shape [C, H, W]: [%d, %d, %d]\n", mat.c, mat.h, mat.w);
+      pretty_print(mat);
+      consoleSelect(&bottomScreen);
     }
   }
 
