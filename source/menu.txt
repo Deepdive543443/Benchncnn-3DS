@@ -1,4 +1,3 @@
-Item 1
-Item 2
-Whatever things 3
-Waht tf 4
+    Hello, NCNN
+    Press START to exit
+    Press A to generate

@@ -38,10 +38,6 @@ Randn::Randn()
 
 ncnn::Mat Randn::randn_ncnn(int h, int w, int c)
 {
-    // std::default_random_engine generator;
-    // std::normal_distribution<float> distribution(0.0, 1.0);
-
-
     cv::Mat images(h, w, c);
     ncnn::Mat mat(images.cols, images.rows, images.c, (void*)images.data);
 
