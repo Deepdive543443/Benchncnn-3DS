@@ -48,13 +48,13 @@ GFXBUILD	:=	$(BUILD)
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
 
 # ----------------ncnn--------------------
-NCNN_DIR := /d/cpp_libs/ncnn_aarch32
+NCNN_DIR := /d/cpp_libs/ncnn_3ds
 NCNN_LIB_FLAG := $(foreach dir,$(NCNN_DIR),-L$(dir)/lib)
 NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
 
 # OCV_DIR := d/cpp_libs/opencv-mobile-4.8.0-armlinux/arm-linux-gnueabihf
 # OCV_LIB_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/lib)
-# OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/include/opencv4/opencv2)
+# OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-I$(dir)/include/opencv4/opencv2)
 
 ARCH += $(NCNN_LIB_FLAG) $(NCNN_INCLUDE_FLAG)
 # ----------------------------------------

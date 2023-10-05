@@ -1,0 +1,11 @@
+self-brewing.3dsx
+self-brewing.elf
+self-brewing.smdh
+build/main.d
+build/main.o
+build/menu.d
+build/menu.o
+build/self-brewing.lst
+build/self-brewing.map
+build/utils.d
+build/utils.o
