@@ -57,5 +57,5 @@ ncnn::Mat Randn::randn_ncnn(int h, int w, int c)
         }
     }
 
-    return mat;
+    return mat.clone();
 }

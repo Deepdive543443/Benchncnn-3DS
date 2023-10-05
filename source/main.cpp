@@ -6,12 +6,13 @@
 #include <time.h>
 
 
-
 #include "utils.h"
 #include "menu.h"
 
 int main(int argc, char** argv)
 {
+    // Load ncnn model
+
     // Initialize services
     gfxInitDefault();
 
@@ -22,8 +23,14 @@ int main(int argc, char** argv)
     consoleInit(GFX_TOP, &topScreen);
     consoleInit(GFX_BOTTOM, &bottomScreen);
 
-    //Select the top screen
+    // Initialize top screen
     consoleSelect(&topScreen);
+
+
+    std::cout << "\x1b[26;16HLoading ProGAN" << std::endl;
+    // ncnn::Net progan;
+    // progan.load_param(script_pro_param_bin);
+    // progan.load_model(script_pro_bin);
 
     // Print Opening message
     std::cout << "\x1b[26;16HHello, Menu demo!" << std::endl;
@@ -35,9 +42,9 @@ int main(int argc, char** argv)
     menu.printMenuState();
 
     Randn randn;
-
     u32 kDown;
     u32 kHeld;
+
 
     // Main loop
     while(aptMainLoop())
@@ -64,7 +71,7 @@ int main(int argc, char** argv)
             consoleSelect(&topScreen);
             ncnn::Mat mat = randn.randn_ncnn(128, 2, 2);
             mat = mat.reshape(1, 1, 512);
-            pretty_print(mat); printf("\n");
+            pretty_print(mat);
             consoleSelect(&bottomScreen);
         }
     }
