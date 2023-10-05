@@ -38,8 +38,8 @@ Randn::Randn()
 
 ncnn::Mat Randn::randn_ncnn(int h, int w, int c)
 {
-    cv::Mat images(h, w, c);
-    ncnn::Mat mat(images.cols, images.rows, images.c, (void*)images.data);
+    ncnn::Mat mat;
+    mat.create(w, h, c, (size_t) 4);
 
     int channels = mat.c;
     int size = mat.c * mat.h * mat.w;
