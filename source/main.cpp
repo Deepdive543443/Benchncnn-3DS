@@ -62,10 +62,9 @@ int main(int argc, char** argv)
         if(kDown & KEY_A)
         {
             consoleSelect(&topScreen);
-            ncnn::Mat mat = randn.randn_ncnn(2, 2, 3);
-            mat.reshape(3, 2, 2);  // <- Error
-            // printf("Matric shape [C, H, W]: [%d, %d, %d]\n", mat.c, mat.h, mat.w);
-            pretty_print(mat);
+            ncnn::Mat mat = randn.randn_ncnn(128, 2, 2);
+            mat = mat.reshape(1, 1, 512);
+            pretty_print(mat); printf("\n");
             consoleSelect(&bottomScreen);
         }
     }
