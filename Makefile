@@ -45,7 +45,7 @@ GFXBUILD	:=	$(BUILD)
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
+ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard #-mtp=soft
 
 # ----------------ncnn--------------------
 NCNN_DIR := /home/justinfung/ncnn_3ds
