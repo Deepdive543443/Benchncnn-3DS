@@ -28,9 +28,9 @@ int main(int argc, char** argv)
 
 
     std::cout << "\x1b[26;16HLoading ProGAN" << std::endl;
-    // ncnn::Net progan;
-    // progan.load_param(script_pro_param_bin);
-    // progan.load_model(script_pro_bin);
+    ncnn::Net progan;
+    progan.load_param("script_pro.ncnn.param");
+    progan.load_model("script_pro.ncnn.bin");
 
     // Print Opening message
     std::cout << "\x1b[26;16HHello, Menu demo!" << std::endl;
