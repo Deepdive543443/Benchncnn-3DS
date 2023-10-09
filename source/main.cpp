@@ -1,16 +1,16 @@
 #include "3ds.h" // 3DS Devkit
 
-#include "datareader.h" // NCNN
+// #include "datareader.h" // NCNN
 #include "net.h"
 #include "cpu.h"
 
 #include <iostream> // STD
-#include <stdlib.h>
-#include <vector>
-#include <float.h>
-#include <stdio.h>
-#include <string.h>
-#include <chrono>
+// #include <stdlib.h>
+// #include <vector>
+// #include <float.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <chrono>
 
 
 #include "utils.h" // Self
@@ -76,14 +76,12 @@ int main(int argc, char** argv)
     // Main loop
     while(aptMainLoop())
     {
+        // User input
         hidScanInput();
         kDown = hidKeysDown();
         kHeld = hidKeysHeld();
-
-
         touchPosition touch;
         hidTouchRead(&touch);
-        printf("\x1b[2;0H%03d; %03d", touch.px, touch.py);
 
         if(kHeld & KEY_START) break;
 
@@ -97,7 +95,17 @@ int main(int argc, char** argv)
         {
             menu.MenuDOWN();
             menu.printMenuState();
-        } 
+        }
+        if(touch.py != 0)
+        {
+            // printf("\x1b[2;0H%03d; %03d; Menu item: %03d", touch.px, touch.py, menu.MenuTouch(touch.py));
+            menu.MenuTouch(touch.py);
+            menu.printMenuState();
+            // consoleSelect(&topScreen);
+            // std::cout << menu.getItem() << std::endl;
+            // consoleSelect(&bottomScreen);
+        }
+
         if(kDown & KEY_A)
         {
             consoleSelect(&topScreen);

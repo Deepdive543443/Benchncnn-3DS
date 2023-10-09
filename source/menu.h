@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
+#include "3ds.h"
 
 
 class Menu
@@ -14,11 +15,15 @@ class Menu
     public:
         Menu(std::string menu_file);
 
-        // Update for menu update
+        // user input
         virtual void MenuDOWN();
         virtual void MenuUP();
+        virtual void MenuTouch(u16 touch_y);
+
+        // Print Menu
         virtual void printMenuState();
         virtual void printMenuItems();
+        std::string getItem();
 };
 
 #endif
