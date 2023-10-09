@@ -64,7 +64,8 @@ int main(int argc, char** argv)
 
 
     consoleSelect(&bottomScreen);
-    Menu menu("menu.txt");
+    Menu menu(scan_models("models"), 4);
+    // Menu menu("menu.txt", 4);
     menu.printMenuItems();
     menu.printMenuState();
 
@@ -83,6 +84,7 @@ int main(int argc, char** argv)
         touchPosition touch;
         hidTouchRead(&touch);
 
+        // Quit App
         if(kHeld & KEY_START) break;
 
         // Update Menu by input
@@ -98,22 +100,21 @@ int main(int argc, char** argv)
         }
         if(touch.py != 0)
         {
-            // printf("\x1b[2;0H%03d; %03d; Menu item: %03d", touch.px, touch.py, menu.MenuTouch(touch.py));
             menu.MenuTouch(touch.py);
             menu.printMenuState();
-            // consoleSelect(&topScreen);
-            // std::cout << menu.getItem() << std::endl;
-            // consoleSelect(&bottomScreen);
         }
 
         if(kDown & KEY_A)
         {
-            consoleSelect(&topScreen);
+            // consoleSelect(&topScreen);
             // ncnn::Mat mat = randn.randn_ncnn(128, 2, 2);
             // mat = mat.reshape(1, 1, 512);
             // pretty_print(mat);
 
-            benchmark("shufflenet_v2.param", ncnn::Mat(64, 64, 3), opt);
+            // benchmark("models/shufflenet_v2.param", ncnn::Mat(64, 64, 3), opt);
+            // consoleSelect(&bottomScreen);
+            consoleSelect(&topScreen);
+            benchmark(("models/" + menu.getItem()).c_str(), ncnn::Mat(64, 64, 3), opt);
             consoleSelect(&bottomScreen);
         }
 
