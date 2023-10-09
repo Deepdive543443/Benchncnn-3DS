@@ -11,3 +11,5 @@ build/utils.d
 build/utils.o
 .vscode/settings.json
 self-brewing.lst
+build/bench.d
+build/bench.o

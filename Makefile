@@ -48,13 +48,9 @@ GFXBUILD	:=	$(BUILD)
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard #-mtp=soft
 
 # ----------------ncnn--------------------
-NCNN_DIR := /home/justinfung/ncnn_3ds
+NCNN_DIR := /home/justinfung/ncnn_3ds # <-Switch to your own path to build yours
 NCNN_LIB_FLAG := $(foreach dir,$(NCNN_DIR),-L$(dir)/lib)
 NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
-
-# OCV_DIR := d/cpp_libs/opencv-mobile-4.8.0-armlinux/arm-linux-gnueabihf
-# OCV_LIB_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/lib)
-# OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-I$(dir)/include/opencv4/opencv2)
 # ----------------------------------------
 
 CFLAGS	:=	-g -Wall -O2 -mword-relocations \
@@ -69,19 +65,6 @@ ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 LIBS	:= -lctru -lm -lncnn
-
-# # ----------------ncnn--------------------
-# NCNN_DIR := /d/cpp_libs/ncnn_aarch32
-# NCNN_LIB_FLAG := $(foreach dir,$(NCNN_DIR),-L$(dir)/lib)
-# NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
-
-# # OCV_DIR := d/cpp_libs/opencv-mobile-4.8.0-armlinux/arm-linux-gnueabihf
-# # OCV_LIB_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/lib)
-# # OCV_INCLUDE_FLAG := $(foreach dir,$(OCV_DIR),-L$(dir)/include/opencv4/opencv2)
-
-# CXXFLAGS += $(NCNN_LIB_FLAG) $(NCNN_INCLUDE_FLAG) -lncnn 
-# # ----------------------------------------
-
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -156,7 +139,7 @@ export HFILES	:=	$(PICAFILES:.v.pica=_shbin.h) $(SHLISTFILES:.shlist=_shbin.h) \
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 			$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 			-I$(CURDIR)/$(BUILD) \
-			$(NCNN_INCLUDE_FLAG)
+			$(NCNN_INCLUDE_FLAG) # <- NCNN has additional include path, so we added it here manually
 
 
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
@@ -256,21 +239,3 @@ endif
 #---------------------------------------------------------------------------------------
 
 #---------------------------------------------------------------------------------
-debug:
-	@echo Debugging
-	@echo $(CTRULIB)
-	@echo Target: $(TARGET)
-	@echo CXX: $(CXX)
-	@echo CPPFILES: $(CPPFILES)
-	@echo _3DSXDEPS: $(_3DSXDEPS)
-	@echo _3DSXFLAGS: $(_3DSXFLAGS)
-	@echo DEVKITARM: $(DEVKITARM)
-	@echo LDFLAGS: $(LDFLAGS)
-	@echo Inclued: $(DEVKITARM)/3ds_rules
-	@echo libraries: $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
-	@echo NCNN_INCLUDE_FLAG: $(NCNN_INCLUDE_FLAG)
-	@echo NCNN_LIB_FLAG: $(NCNN_LIB_FLAG)
-
-
-	@echo All command: $(SILENTCMD)$(CXX) -MMD -MP -MF $(DEPSDIR)/$*.d $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@ $(ERROR_FILTER)
-
