@@ -1,6 +1,7 @@
 ## Benchncnn-3DS  
 This repository will benchmark NCNN model on your 3DS (or OOM).
-![IMG_20231010_094340](https://github.com/Deepdive543443/self-brewing/assets/83911295/7b7c3796-1888-4ad3-bb99-67163af787d1)
+![IMG_20231010_173034](https://github.com/Deepdive543443/Benchncnn-3DS/assets/83911295/9eee9fe3-8ef4-4c42-99cf-2e9c5eedca21)
+
 
 ## Download
 3dsx(Require Homebrew Launcher): https://drive.google.com/file/d/1tncRGAw0qgvCUywyteHZJxzInodQ6yAi/view?usp=drive_link
