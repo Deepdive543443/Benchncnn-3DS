@@ -112,11 +112,11 @@ int main(int argc, char** argv)
         }
 
         // Flush and swap framebuffers
-		gfxFlushBuffers();
-		gfxSwapBuffers();
+        gfxFlushBuffers();
+        gfxSwapBuffers();
 
-		//Wait for VBlank
-		gspWaitForVBlank();
+        //Wait for VBlank
+        gspWaitForVBlank();
     }
 
     gfxExit();

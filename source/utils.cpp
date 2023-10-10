@@ -37,12 +37,13 @@ std::vector<std::string> scan_models(const char* path)
     DIR *dir;
     struct dirent *ent;
 
-    if ((dir = opendir (path)) != NULL) {
-        while ((ent = readdir (dir)) != NULL) {
+    if ((dir = opendir (path)) != NULL) 
+    {
+        while ((ent = readdir (dir)) != NULL) 
+        {
             models.push_back(std::string(ent->d_name));
-
-    }
-    closedir (dir);
+        }
+        closedir(dir);
     }
     else
     {
