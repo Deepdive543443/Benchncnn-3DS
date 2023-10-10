@@ -5,6 +5,9 @@ This repository will benchmark NCNN model on your 3DS (or OOM).
 ## Download
 3dsx(Require Homebrew Launcher): https://drive.google.com/file/d/1tncRGAw0qgvCUywyteHZJxzInodQ6yAi/view?usp=drive_link
 
+## Performance and issues
+At this moment, to make the application runs at first, we built the NCNN with OpenMP and SimpleOMP off, so it will takes (lots of) times to run an entire benchmarking (nearly 2min for nanodet_m to finish a benchmark on 320x320 image). We will try look into the best setting with improved performance on 3DS.
+
 
 ## Build
 To build this program, you will need to:
