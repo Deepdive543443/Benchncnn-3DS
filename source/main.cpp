@@ -60,7 +60,7 @@ int main(int argc, char** argv)
     std::cout << "\x1b[13;16HCPU powersave: " << ncnn::get_cpu_powersave() << std::endl;
 
     std::cout << "\x1b[16;16HHello, NCNN bench demo!" << std::endl;
-    std::cout << "\x1b[27;16HPress START to exit" << std::endl;
+    std::cout << "\x1b[17;16HPress START to exit" << std::endl;
 
 
     consoleSelect(&bottomScreen);

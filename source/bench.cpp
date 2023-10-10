@@ -72,7 +72,13 @@ void benchmark(const char* comment, const ncnn::Mat &_in, const ncnn::Option& op
     ncnn::Mat in = _in;
     in.fill(0.01f);
 
+
+    printf("\x1b[22;1H");
+    printf("\x1b[0J"); // Clear line
+
     // warm up
+    printf("\x1b[22;1HInput shape:[H:%d, W:%d, C:%d]\n", in.h, in.w, in.c);
+    printf("\x1b[23;1HWarm up...");
     for (int i = 0; i < g_warmup_loop_count; i++)
     {
         ncnn::Extractor ex = net.create_extractor();
@@ -87,11 +93,18 @@ void benchmark(const char* comment, const ncnn::Mat &_in, const ncnn::Option& op
             ncnn::Mat out;
             ex.extract(output_names[j], out);
         }
+        printf("\x1b[23;20H[%2d/%2d]\n",i + 1, g_warmup_loop_count);
     }
 
     double time_min = DBL_MAX;
     double time_max = -DBL_MAX;
     double time_avg = 0;
+
+    printf("\x1b[24;1HBenchmarking...");
+
+    int out_w;
+    int out_h;
+    int out_c;
 
     for (int i = 0; i < g_loop_count; i++)
     {
@@ -108,6 +121,11 @@ void benchmark(const char* comment, const ncnn::Mat &_in, const ncnn::Option& op
             {
                 ncnn::Mat out;
                 ex.extract(output_names[j], out);
+                
+                //
+                out_w = out.w;
+                out_h = out.h;
+                out_c = out.c;
             }
         }
         double end = get_current_time();
@@ -116,9 +134,10 @@ void benchmark(const char* comment, const ncnn::Mat &_in, const ncnn::Option& op
         time_min = std::min(time_min, time);
         time_max = std::max(time_max, time);
         time_avg += time;
+        printf("\x1b[24;20H[%2d/%2d] Time:%7.2f\n",i + 1, g_loop_count, time);
     }
+    printf("\x1b[25;1HOutput shape:[H:%d, W:%d, C:%d]\n\n", out_h, out_w, out_c);
 
     time_avg /= g_loop_count;
-
-    fprintf(stderr, "%20s  min = %7.2f  max = %7.2f  avg = %7.2f\n", comment, time_min, time_max, time_avg);
+    fprintf(stderr, "min = %7.2f  max = %7.2f  avg = %7.2f\n", time_min, time_max, time_avg);
 }
