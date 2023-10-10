@@ -106,15 +106,8 @@ int main(int argc, char** argv)
 
         if(kDown & KEY_A)
         {
-            // consoleSelect(&topScreen);
-            // ncnn::Mat mat = randn.randn_ncnn(128, 2, 2);
-            // mat = mat.reshape(1, 1, 512);
-            // pretty_print(mat);
-
-            // benchmark("models/shufflenet_v2.param", ncnn::Mat(64, 64, 3), opt);
-            // consoleSelect(&bottomScreen);
             consoleSelect(&topScreen);
-            benchmark(("models/" + menu.getItem()).c_str(), ncnn::Mat(64, 64, 3), opt);
+            benchmark(("models/" + menu.getItem()).c_str(), ncnn::Mat(320, 320, 3), opt);
             consoleSelect(&bottomScreen);
         }
 
