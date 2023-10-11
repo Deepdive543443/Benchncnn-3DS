@@ -54,6 +54,9 @@ Larger networks will cause the program to crash, some of them are larger than th
 
 Old 3DS's cpu only have one core available to use. Multithreat might be available on newer 3DS model
 
+## Todo
+- Extended memory modes
+
 ## Credit
 - [NCNN](https://github.com/Tencent/ncnn): High performance neural network inference computing framework for mobile platform, easy to use and port
 - [DevkitPRO](https://devkitpro.org/wiki/Getting_Started): Toolchain for 3DS homebrew development
