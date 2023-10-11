@@ -51,6 +51,11 @@ ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard #-mtp=soft
 NCNN_DIR := /home/justinfung/ncnn_3ds # <-Switch to your own path to build yours
 NCNN_LIB_FLAG := $(foreach dir,$(NCNN_DIR),-L$(dir)/lib)
 NCNN_INCLUDE_FLAG := $(foreach dir,$(NCNN_DIR),-I$(dir)/include/ncnn)
+
+APP_TITLE := BenchNCNN
+APP_DESCRIPTION := BenchNCNN's port of 3DS
+APP_AUTHOR := Deepdiver et al
+ICON := 48_ncnn.png
 # ----------------------------------------
 
 CFLAGS	:=	-g -Wall -O2 -mword-relocations \
