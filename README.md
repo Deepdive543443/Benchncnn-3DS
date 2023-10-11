@@ -6,12 +6,6 @@ This repository will benchmark NCNN model on your 3DS (or OOM).
 ## Download
 3dsx(Require Homebrew Launcher): https://drive.google.com/file/d/1tncRGAw0qgvCUywyteHZJxzInodQ6yAi/view?usp=drive_link
 
-## Performance and issues
-At this moment, to make the application runs at first, we built the NCNN with OpenMP and SimpleOMP off, so it will takes (lots of) times to run an entire benchmarking (nearly 2min for nanodet_m to finish a benchmark on 320x320 image). We will try look into the best setting with improved performance on 3DS.
-
-Larger networks will cause the program to crash, some of them are larger than the FCRAM of 3DS (128mb).
-
-
 ## Build
 To build this program, you will need to:
 - Install devkitARM
@@ -51,6 +45,14 @@ To build this program, you will need to:
 - Modify the NCNN_DIR in Makefile to your NCNN path, it should good to go
 - (Optional) Install Citra 3DS emulator for debugging 
 - (Optional) Use FTPD Pro to transfer files between 3DS and PC
+
+
+## Performance and issues
+At this moment, to make the application runs at first, we built the NCNN with OpenMP and SimpleOMP off, so it will takes (lots of) times to run an entire benchmarking (nearly 2min for nanodet_m to finish a benchmark on 320x320 image). We will try look into the best setting with improved performance on 3DS.
+
+Larger networks will cause the program to crash, some of them are larger than the FCRAM of 3DS (128mb).
+
+Old 3DS's cpu only have one core available to use. Multithreat might be available on newer 3DS model
 
 ## Credit
 - [NCNN](https://github.com/Tencent/ncnn): High performance neural network inference computing framework for mobile platform, easy to use and port
