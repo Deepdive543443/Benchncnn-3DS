@@ -4,7 +4,9 @@ This repository will benchmark NCNN model on your 3DS (or OOM).
 
 
 ## Download
-3dsx(Require Homebrew Launcher): https://drive.google.com/file/d/1tncRGAw0qgvCUywyteHZJxzInodQ6yAi/view?usp=drive_link
+3dsx and CIA: [https://drive.google.com/file/d/1tncRGAw0qgvCUywyteHZJxzInodQ6yAi/view?usp=drive_link](https://drive.google.com/file/d/1E_-GCaJV85c2RbMaffD4W0Nmqw7RZiHq/view?usp=drive_link)
+
+Place your "models" in folder models in the root path
 
 ## Build
 To build this program, you will need to:
