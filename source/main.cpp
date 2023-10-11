@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 
 
     consoleSelect(&bottomScreen);
-    Menu menu(scan_models("models"), 4);
+    Menu menu(scan_models("sdmc:/models/"), 4);
     // Menu menu("menu.txt", 4);
     menu.printMenuItems();
     menu.printMenuState();
@@ -101,7 +101,7 @@ int main(int argc, char** argv)
         if(kDown & KEY_A)
         {
             consoleSelect(&topScreen);
-            benchmark(("models/" + menu.getItem()).c_str(), ncnn::Mat(320, 320, 3), opt);
+            benchmark(("sdmc:/models/" + menu.getItem()).c_str(), ncnn::Mat(320, 320, 3), opt);
             consoleSelect(&bottomScreen);
         }
 
