@@ -23,9 +23,9 @@ To build this program, you will need to:
   
   ```
   export DEVKITPRO=/opt/devkitpro
-  export DEVKITARM=${DEVKITPRO}/devkitARM
-  export DEVKITPPC=${DEVKITPRO}/devkitPPC
-  export export PATH=${DEVKITPRO}/tools/bin:$PATH
+  export DEVKITARM=/opt/devkitpro/devkitARM
+  export DEVKITPPC=/opt/devkitpro/devkitPPC
+  export export PATH=$/opt/devkitpro/tools/bin:$PATH
   source ~/.profile
   ```
   ```
