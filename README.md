@@ -36,7 +36,16 @@ To build this program, you will need to:
 - [Download](https://drive.google.com/file/d/1MpEv8hHO_Z7lfZT23nGj9IqDHolVRaIT/view?usp=drive_link) or build NCNN using toolchains file from [3DS-cmake](https://github.com/Xtansia/3ds-cmake).
   
 
-  Copy the toolchain files (DevitARM3DS.cmake and the cmake folder) from [3DS-cmake](https://github.com/Xtansia/3ds-cmake), then build NCNN using:
+  Copy the toolchain files (DevitARM3DS.cmake and the cmake folder) from [3DS-cmake](https://github.com/Xtansia/3ds-cmake),
+
+  NCNN's CMakeList didn't turn off someone of the optimization for neon-vfpv4, so you might need to command them out from CMakeList.
+  ```
+  if(NOT NCNN_COMPILER_SUPPORT_ARM_VFPV4)
+    set(CMAKE_REQUIRED_FLAGS "-mfpu=neon-vfpv4 -mfp16-format=ieee")
+    check_cxx_source_compiles("#include <arm_neon.h>\nint main() { float32x4_t _a; float16x4_t _s = vcvt_f16_f32(_a); return 0; }" NCNN_COMPILER_SUPPORT_ARM_VFPV4_FP16)
+  endif()
+  ```
+  Then build NCNN using:
   ```
   cd ncnn
   mkdir build && cd build
