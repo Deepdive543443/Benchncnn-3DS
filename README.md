@@ -4,7 +4,7 @@ This repository will benchmark NCNN model on your 3DS (or OOM).
 
 
 ## Download
-3dsx and CIA: [https://drive.google.com/file/d/1tncRGAw0qgvCUywyteHZJxzInodQ6yAi/view?usp=drive_link](https://drive.google.com/file/d/1E_-GCaJV85c2RbMaffD4W0Nmqw7RZiHq/view?usp=drive_link)
+3DSX and CIA: https://github.com/Deepdive543443/Benchncnn-3DS/releases
 
 Place "models" folder with your models to the root path
 
