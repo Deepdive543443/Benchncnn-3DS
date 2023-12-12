@@ -1,13 +1,17 @@
 ## Benchncnn-3DS  
-This repository will benchmark NCNN model on your 3DS (or OOM).
 ![IMG_20231010_173034](https://github.com/Deepdive543443/Benchncnn-3DS/assets/83911295/9eee9fe3-8ef4-4c42-99cf-2e9c5eedca21)
+
+## Intro
+This repository is a port of Benchncnn of Nintendo 3DS, which is used to testing the performance of neural network in NCNN's format.
+Because of limited amount of memory(64mb), this project could only be used for testing light-weight networks.
 
 
 ## Download
-3DSX, CIA and pre-build NCNN lib: https://github.com/Deepdive543443/Benchncnn-3DS/releases
-Place "models" folder with your models to the root path
+This toolkit required a modded Nintendo 3DS with an title manager or Homebrew Launcher to boot.
 
-What to use NCNN in your project? You can link the pre-build NCNN library for 3DS, or follow the build guide to build yours.
+3DSX, CIA and pre-build NCNN lib available at: https://github.com/Deepdive543443/Benchncnn-3DS/releases
+
+Copy the .param file to the "models" folder to the root of your SD card 
 
 ## Build
 To build this program, you will need to:
@@ -34,16 +38,16 @@ To build this program, you will need to:
   sudo dkp-pacman -Syu
   sudo dkp-pacman -S 3ds-dev
   ```
-- [Download](https://drive.google.com/file/d/1MpEv8hHO_Z7lfZT23nGj9IqDHolVRaIT/view?usp=drive_link) or build NCNN using toolchains file from [3DS-cmake](https://github.com/Xtansia/3ds-cmake).
+- [Download](https://drive.google.com/file/d/1MpEv8hHO_Z7lfZT23nGj9IqDHolVRaIT/view?usp=drive_link) or build NCNN library.
   
 
-  Copy the toolchain files (DevitARM3DS.cmake and the cmake folder) from [3DS-cmake](https://github.com/Xtansia/3ds-cmake),
+  Copy the toolchain files (DevitARM3DS.cmake) to the toolchains folder of NCNN.
 
   Then build NCNN using:
   ```
   cd ncnn
   mkdir build && cd build
-  cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/DevkitArm3DS.cmake .. -DNCNN_SIMPLEOCV=ON -DNCNN_OPENMP=OFF -DNCNN_VFPV4=OFF ..
+  cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/DevkitArm3DS.cmake -DNCNN_SIMPLEOCV=ON -DNCNN_OPENMP=OFF -DNCNN_VFPV4=OFF ..
   make -j4
   make install
   ```
