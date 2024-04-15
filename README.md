@@ -47,7 +47,7 @@ To build this program, you will need to:
   ```
   cd ncnn
   mkdir build && cd build
-  cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/DevkitArm3DS.cmake -DNCNN_SIMPLEOCV=ON -DNCNN_OPENMP=OFF -DNCNN_VFPV4=OFF ..
+  cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/DevkitArm3DS-toolchain.cmake -DNCNN_SIMPLEOCV=ON -DNCNN_OPENMP=OFF -DNCNN_SIMPLEVK=OFF -DNCNN_VFPV4=OFF ..
   make -j4
   make install
   ```
